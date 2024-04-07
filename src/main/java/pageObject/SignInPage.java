@@ -1,14 +1,17 @@
 package pageObject;
 
+import java.util.Properties;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utils.BaseClass;
+import utils.PageManager;
 
 public class SignInPage extends BaseClass {
 	
-	String email="amanpreet+7@logiciel.io";
+	PageManager pageManager;
 	
 	// To click on Sign In link on sign up page
 	@FindBy(xpath ="//a[text()='Sign in here.']")
@@ -33,30 +36,33 @@ public class SignInPage extends BaseClass {
 	public void clickSignInLink() {
 		clickSignin.click();
 	}
-	public void enterEmail() {
+	public void enterEmail() throws Exception {
+		 getData();
 		if(enterEmail.isDisplayed())
 		{
 			System.out.println("element is displayed");
-			enterEmail.sendKeys(email);
+			enterEmail.sendKeys(properties.getProperty("emailID"));
 		}else
 		{
 			System.out.println("Email input field is not visible");
 		}
 		
 	}
-	public void enterPassword() {
-		password.sendKeys("owner123");
+	public void enterPassword() throws Exception {
+		getData();
+		password.sendKeys(properties.getProperty("passwd"));
+
 	}
 	public void clickOnLogin()
 	{
 		LoginButton.click();
 	}
-	public void enterDetails() 
+	
+	public boolean LoggedIN() throws Exception 
 	{
-		clickSignInLink();
-		enterEmail();
-		enterPassword();
+		
 		clickOnLogin();
+		return true;
 		
 	}
 }

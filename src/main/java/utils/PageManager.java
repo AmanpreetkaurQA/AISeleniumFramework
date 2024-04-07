@@ -39,12 +39,12 @@ public class PageManager extends BaseClass {
 		System.out.println(str);
 		return str;		
 	}
-	
-	public String getTitle() {
-		
+	//String title="OpsWire AI";
+
+	public String titleName() {
 		String str = driver.getTitle();
 		System.out.println(str);
-		return str;		
+		return str;
 	}
 
 }
